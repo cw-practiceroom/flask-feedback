@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block body %}
+<div class="ui raised very padded text container segment">
+    <p class="ui header">New feedback</p>
+    <form class="ui form" method="POST">
+      {{ form.hidden_tag() }}
+      <!--  -->
+      {% for field in form if field.widget.input_type != 'hidden' %}
+      <p>
+        <div class="field">
+            {{ field.label }} {{ field }}
+        </div> 
+        <!--  -->
+        {% for error in field.errors %} {{ error }} {% endfor %}
+      </p>
+      {% endfor %}
+      <button type="submit" class="ui primary button">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
