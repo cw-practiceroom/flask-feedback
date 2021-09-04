@@ -71,8 +71,9 @@ def secret_page(username):
         raise Unauthorized()
     
     user = User.query.filter_by(username=username).first()
+    form = DeleteForm()
 
-    return render_template('secret.html', user=user)
+    return render_template('secret.html', user=user, form=form)
 
 
 @app.route('/logout')
@@ -144,6 +145,7 @@ def edit_feedback(id):
 def delete_feedback(id):
 
     feedback = Feedback.query.get(id)
+
     if "username" not in session or feedback.username != session['username']:
         raise Unauthorized()
 

@@ -1,21 +1,17 @@
 {% extends 'base.html' %} {% block body %}
 <div class="ui raised very padded text container segment">
-    <p class="ui header">Login</p>
-    <form class="ui form" id="user-form" method="POST">
-      {{ form.hidden_tag() }}
-      <!--  -->
-      {% for field in form if field.widget.input_type != 'hidden' %}
-      <p>
-        <div class="field">
-            {{ field.label }} {{ field }}
-        </div> 
-        <!--  -->
-        {% for error in field.errors %} {{ error }} {% endfor %}
-      </p>
-      {% endfor %}
-      <button type="submit" class="ui primary button">Submit</button>
-    </form>
+  <p class="ui header">Login</p>
+  <form class="ui form" id="user-form" method="POST">
+    {{ form.hidden_tag() }}
+    <!--  -->
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    <div class="field">{{ field.label }} {{ field }}</div>
+    <!--  -->
+    {% for error in field.errors %}
+    <div class="ui red message">{{ error }}</div>
+    {% endfor %} {% endfor %}
+    <button type="submit" class="ui primary button">Submit</button>
+  </form>
 </div>
 
 {% endblock %}
-
